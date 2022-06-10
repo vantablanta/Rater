@@ -125,8 +125,3 @@ STATICFILES_DIRS=[
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-cloudinary.config( 
-  cloud_name = "gram", 
-  api_key = "763435233534947", 
-  api_secret = "V1iA_t5kRv-1WUeRv4rB6utNveU" 
-)
