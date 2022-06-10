@@ -15,5 +15,6 @@ class Profile(models.Model):
     profile_photo = CloudinaryField("image", blank= True)
     bio = models.TextField(blank=True)
     projects = models.ForeignKey(Post, on_delete=models.CASCADE)
+    created = models.DateTimeField(auto_now_add=True)
 
 
