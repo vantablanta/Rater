@@ -1,6 +1,9 @@
 import os
 from pathlib import Path
 from dotenv import load_dotenv
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
 
 env_path = Path('.')/'.env'
@@ -24,6 +27,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'api',
+    'cloudinary'
 ]
 
 MIDDLEWARE = [
@@ -117,3 +122,10 @@ STATICFILES_DIRS=[
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+cloudinary.config( 
+  cloud_name = "gram", 
+  api_key = "763435233534947", 
+  api_secret = "V1iA_t5kRv-1WUeRv4rB6utNveU" 
+)
