@@ -10,11 +10,17 @@ class Post(models.Model):
     description = models.TextField(blank=True)
     url = models.URLField(max_length=300)
 
+    def __str__(self):
+        return self.title
+
 class Profile(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     profile_photo = CloudinaryField("image", blank= True)
     bio = models.TextField(blank=True)
     projects = models.ForeignKey(Post, on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.user.username
 
 

@@ -124,12 +124,8 @@ STATICFILES_DIRS=[
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
-<<<<<<< HEAD
 cloudinary.config( 
     cloud_name = str(os.getenv('CLOUD_NAME')),
     api_key = str(os.getenv('API_KEY')),
     api_secret = str(os.getenv('API_SECRET')),
 )
-=======
->>>>>>> 506dd2e8a90cf5688e69e51234b736663c104c45
