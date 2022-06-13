@@ -30,6 +30,8 @@ INSTALLED_APPS = [
     'api',
     'cloudinary', 
     'rest_framework',
+    'app',
+    'fontawesomefree',
 ]
 
 MIDDLEWARE = [
