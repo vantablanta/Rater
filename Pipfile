@@ -8,6 +8,9 @@ django = "*"
 python-dotenv = "*"
 djangorestframework = "*"
 fontawesomefree = "*"
+django-crispy-forms = "*"
+django-bootstrap-v5 = "*"
+crispy-bootstrap5 = "*"
 
 [dev-packages]
 

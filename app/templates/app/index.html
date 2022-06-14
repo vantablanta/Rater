@@ -7,12 +7,44 @@
     {%include 'nav.html' %}
 </div>
 {%include 'app/auth.html' %}
-<div class="container-fluid text-light h-100 w-100 bg-dark">
+<div class="container-fluid text-light h-100 w-100 bg-dark pb-5">
   <p class="pt-5">Site of the day {{post.created  |date:"d M Y" }}</p>
     <div class="pt-5 mt-5 pb-5 mb-5">
       <h4 class="text-center text-bold fs-1">{{post.title | title}}</h4>
-      <p class="text-center">By <span class="text-info">{{post.owner.username | capfirst }}</span></p>
+      <p class="text-center">By <span class="text-info">{{post.owner.user.username | capfirst }}</span></p>
+
+
+      <!-- SCORES -->
+      {% for rating in post.ratings.all %}
+       {% if forloop.counter is post.ratings.all.count %}
+      <div class="row text-center p-5 ">
+        <div class="col-md-2"></div>
+        <div class="col-md-2 me-2 border border-1 border-info text-light rounded p-2">
+          <p>{{rating.design_average}}</p>
+          DESIGN
+        </div>
+        <div class="col-md-2  me-2  border border-1 border-danger text-light rounded p-2">
+          <p>{{rating.usability_average}}</p>
+          USABILITY
+        </div>
+        <div class="col-md-2  me-2  border border-1 border-success text-light rounded p-2">         
+          <p>{{rating.content_average}}</p>
+          CONTENT
+        </div>
+        <div class="col-md-2  me-2  border border-1 border-primary text-light rounded p-2r">
+          <p>{{rating.score}}</p>
+          SCORE
+        </div>
+        <div class="col-md-2"></div>
+      </div>
+      {%endif%}
+      {%endfor%}
+
+</div>
+
+
       <div class="btn btn-outline-info rounded-pill"><a class="text-decoration-none text-light" href="{{post.url}}">View</a></div>
+    <a class='float-end text-decoration-none text-light btn btn-outline-info rounded-pill' href="{%url 'project' post.title%}">Rate</a>
     </div> 
 </div>
 
