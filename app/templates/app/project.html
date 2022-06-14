@@ -39,7 +39,7 @@
 
         <div class="card-body">
             <h5 class="card-title"><strong>{{post.title|title}}</strong>
-                <a href="{{ post.url }}" style="float:right" class="btn btn-sm btn-info mr-4"> View </a>
+                <a href="{{post.url}}" style="float:right" class="btn btn-info"> View </a>
             </h5>
             <p>By <span><a href="" class="text-decoration-none">{{ post.owner.user.username|title }}</a></p>
             <p>{{ post.description }}</p>

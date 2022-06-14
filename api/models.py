@@ -8,7 +8,7 @@ class Post(models.Model):
     title = models.CharField(max_length=200)
     image = CloudinaryField('image', blank = True)
     description = models.TextField(blank=True)
-    url = models.URLField(max_length=300)
+    post_url = models.URLField(max_length=300)
     created = models.DateTimeField(auto_now_add=True)
 
     

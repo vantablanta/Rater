@@ -19,7 +19,7 @@ class RegisterForm(UserCreationForm):
 class SubmitForm(ModelForm):
     class Meta():
         model = Post
-        fields = ['title', 'description', 'image', 'url']
+        fields = ['title', 'description', 'image', 'post_url']
         
 
 class RatingsForm(ModelForm):

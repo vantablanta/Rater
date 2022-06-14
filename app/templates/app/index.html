@@ -41,14 +41,15 @@
 </div>
 
 
-      <div class="btn btn-outline-info rounded-pill"><a class="text-decoration-none text-light" href="{{post.url}}">View</a></div>
-    <a class='float-end text-decoration-none text-light btn btn-outline-info rounded-pill' href="{%url 'project' post.title%}">Rate</a>
+    <div class="btn btn-outline-info rounded-pill">
+      <a class="text-decoration-none text-light" href="{{post.post_url}}">View</a></div>
+      <a class='float-end text-decoration-none text-light btn btn-outline-info rounded-pill' href="{%url 'project' post.title%}">Rate</a>
     </div> 
 </div>
 
 <div class="container-fluid row mb-4">
   {%for post in posts%}
-  <a href="{{post.url}}" class="text-decoration-none text-dark col-md-3 me-3 w-25 pt-3">
+  <a href="{%url 'project' post.title%}" class="text-decoration-none text-dark col-md-3 me-3 w-25 pt-3">
     <div class="card ">
       <img src="{{post.image.url}}" class="w-10" alt="">
       <div class="card-body">
