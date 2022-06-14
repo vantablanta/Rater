@@ -11,6 +11,10 @@ fontawesomefree = "*"
 django-crispy-forms = "*"
 django-bootstrap-v5 = "*"
 crispy-bootstrap5 = "*"
+dj-database-url = "*"
+gunicorn = "*"
+whitenoise = "*"
+django-heroku = "*"
 
 [dev-packages]
 

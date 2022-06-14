@@ -1,6 +1,8 @@
 import os
 from pathlib import Path
 from dotenv import load_dotenv
+import django_heroku
+import dj_database_url
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
@@ -14,8 +16,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = str(os.getenv('SECRET_KEY'))
 
 DEBUG = True
-
-ALLOWED_HOSTS = []
+MODE = 'dev'
+ALLOWED_HOSTS = ['rater-mn.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -41,6 +43,7 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -74,17 +77,25 @@ WSGI_APPLICATION = 'rater.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': str(os.getenv('NAME')),
-        'USER': str(os.getenv('USER')),
-        'PASSWORD': str(os.getenv('PASSWORD')),
-        'HOST': str(os.getenv('HOST')),
-        'PORT': int(os.getenv('PORT')),
+if MODE == 'dev':
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': str(os.getenv('NAME')),
+            'USER': str(os.getenv('USER')),
+            'PASSWORD': str(os.getenv('PASSWORD')),
+            'HOST': str(os.getenv('HOST')),
+            'PORT': int(os.getenv('PORT')),
+        }
     }
-}
+else:
+    DATABASES = {
+       'default': dj_database_url.config( default=str(os.getenv('DATABASE_URL')))
+    }
+
+db_from_env = dj_database_url.config()
+DATABASES['default'].update(db_from_env)
+
 
 
 # Password validation
@@ -125,7 +136,10 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS=[
     os.path.join(BASE_DIR, 'static')
 ]
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
@@ -136,3 +150,6 @@ cloudinary.config(
     api_key = str(os.getenv('API_KEY')),
     api_secret = str(os.getenv('API_SECRET')),
 )
+
+
+django_heroku.settings(locals())
