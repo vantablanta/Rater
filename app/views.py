@@ -144,7 +144,7 @@ def project(request, post):
 
 def update_profile(request, pk):
     profile = Profile.objects.get(id=pk)
-    form = UpdateProfileForm(request.POST, instance=profile)
+    form = UpdateProfileForm(request.POST,request.FILES, instance=profile)
     if request.method == 'POST':
         if form.is_valid():
             form.save()

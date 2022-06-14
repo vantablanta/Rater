@@ -59,7 +59,7 @@
           <p class="card-title col-md-5">{{post.created |date:"d M Y" }}</p>
         </div>
         <hr>
-        {%if profile.profile_photo%}
+        {%if post.owner.profile_photo%}
         <img src="{{post.owner.profile_photo.url}}" class='rounded-circle border ml-3 mt-2' alt="" width="35" height="35">
         {%else%}
         <div></div>
