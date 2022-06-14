@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from django.forms import ModelForm
 from django.contrib.auth.models import User
-from api.models import Rating
+from api.models import Rating, Post
 
 
 class RegisterForm(UserCreationForm):
@@ -15,6 +15,12 @@ class RegisterForm(UserCreationForm):
     class Meta():
        model=User
        fields = ['email', 'username', 'password1', 'password2']
+
+class SubmitForm(ModelForm):
+    class Meta():
+        model = Post
+        fields = ['title', 'description', 'image', 'url']
+        
 
 class RatingsForm(ModelForm):
     class Meta():

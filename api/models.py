@@ -17,7 +17,6 @@ class Post(models.Model):
     
     class Meta:
         ordering = ['created', '-created']
-    
 
 class Profile(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)

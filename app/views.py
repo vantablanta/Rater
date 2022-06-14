@@ -11,7 +11,7 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from api.models import Profile, Post, Rating
 from .forms import RegisterForm
-from .forms import RatingsForm
+from .forms import RatingsForm, SubmitForm
 
 # Create your views here.
 def login_user(request):
@@ -73,6 +73,23 @@ def profile(request):
    }
 
    return render(request, 'app/profile.html', context)
+
+def add_post(request):
+    form = SubmitForm()
+    user = request.user
+    owner = Profile.objects.get(user=user) 
+    if request.method == 'POST':
+        form = SubmitForm(request.POST, request.FILES)
+        if form.is_valid():
+            image = form.cleaned_data['image']
+            title = form.cleaned_data['title']
+            description = form.cleaned_data['description']
+            url = form.cleaned_data['url']
+            upload = Post(image=image, title=title, description=description, owner=owner)
+            upload.save()
+            return redirect('home')
+    context = {'form': form}
+    return render(request, 'app/add.html', context)
 
 def project(request, post):
     post = Post.objects.filter(title=post).first()
