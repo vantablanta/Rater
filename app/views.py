@@ -92,6 +92,16 @@ def add_post(request):
     context = {'form': form}
     return render(request, 'app/add.html', context)
 
+def search(request):
+    query = request.GET.get('q')
+    if query:
+        images = Post.objects.filter(
+            Q(title__icontains=query) |
+            Q(owner__icontains=query)
+        )
+        context = {'images': images}
+        return render(request, 'app/search.html', context)
+
 def project(request, post):
     post = Post.objects.filter(title=post).first()
     ratings = Rating.objects.filter(user=request.user, post=post).first()
