@@ -5,33 +5,22 @@
 </div>
 
 <div class="container">
-    {%if images %}
+    {%if posts %}
     <div class="row">
         <div class="col-md-2"></div>
         <div class="col-md-8">
-            {%for image in images %}
+            {%for post in posts %}
             <div class="card mb-3 mt-5">
                 <div class="card-header bg">
-                    {%if profile.profile_photo%}
+                    {%if post.owner.profile_photo%}
                     <img src="{{post.owner.profile_photo.url}}" class='rounded-circle border ml-3 mt-2' alt="" width="35" height="35">
                     {%else%}
                     <div></div>
                     {%endif%}
-                    <small class="text-bold">{{image.owner |lower}}</small>
-
-                    {%if request.user == image.owner.owner%}
-                    <div class="float-end">
-                        <div class="dropdown">
-                            <div class="dropdown-toggle" href="" id="navbarDropdown" role="button"
-                                data-toggle="dropdown" aria-expanded="false">
-                                <i class="fa-solid fa-ellipsis"></i>
-                            </div>
-                        </div>
-                    </div>
-                    {%endif%}
+                    <div class="float-end"><a class='text-decoration-none text-dark' href="{%url 'project' post.title%}">View</a></div>
+                    <small class="text-bold">{{post.owner.user.username |lower}}</small>
                 </div>
-
-                <img src="{{image.image.url}}" class="main-img card-img-top" alt="Image">
+                <img src="{{post.image.url}}" class="main-img card-img-top" alt="Image">
             </div>
             {%endfor%}
         </div>

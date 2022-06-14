@@ -92,10 +92,10 @@ def add_post(request):
 def search(request):
     query = request.GET.get('q')
     if query:
-        images = Post.objects.filter(
+        posts = Post.objects.filter(
             Q(title__icontains=query)
         )
-        context = {'images': images}
+        context = {'posts': posts}
         return render(request, 'app/search.html', context)
 
 def project(request, post):
