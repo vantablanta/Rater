@@ -45,9 +45,6 @@ def register_user(request):
             user.username = user.username.lower()
             user.save()
 
-            username = form.cleaned_data['username']
-            email = form.cleaned_data['email']
-
             profile = Profile.objects.create(user=user)
             profile.save()
 
@@ -96,8 +93,7 @@ def search(request):
     query = request.GET.get('q')
     if query:
         images = Post.objects.filter(
-            Q(title__icontains=query) |
-            Q(owner__icontains=query)
+            Q(title__icontains=query)
         )
         context = {'images': images}
         return render(request, 'app/search.html', context)

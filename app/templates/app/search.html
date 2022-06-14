@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{%block body%}
+<div class="container-fluid">
+    {%include 'nav.html' %}
+</div>
+
+<div class="container">
+    {%if images %}
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            {%for image in images %}
+            <div class="card mb-3 mt-5">
+                <div class="card-header bg">
+                    {%if profile.profile_photo%}
+                    <img src="{{post.owner.profile_photo.url}}" class='rounded-circle border ml-3 mt-2' alt="" width="35" height="35">
+                    {%else%}
+                    <div></div>
+                    {%endif%}
+                    <small class="text-bold">{{image.owner |lower}}</small>
+
+                    {%if request.user == image.owner.owner%}
+                    <div class="float-end">
+                        <div class="dropdown">
+                            <div class="dropdown-toggle" href="" id="navbarDropdown" role="button"
+                                data-toggle="dropdown" aria-expanded="false">
+                                <i class="fa-solid fa-ellipsis"></i>
+                            </div>
+                        </div>
+                    </div>
+                    {%endif%}
+                </div>
+
+                <img src="{{image.image.url}}" class="main-img card-img-top" alt="Image">
+            </div>
+            {%endfor%}
+        </div>
+        <div class="col-md-2"></div>
+
+
+    </div>
+    {%else%}
+    <div class="fs-3 text-center m-5 p-5">
+        Sorry we have no results for your search!
+    </div>
+    {%endif%}
+</div>
+
+
+
+{%endblock%}
