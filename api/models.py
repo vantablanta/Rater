@@ -28,6 +28,10 @@ class Profile(models.Model):
     def __str__(self):
         return self.user.username
 
+    def update_profile(self, pk):
+        bio =self.objects.get(bio=pk)
+        return bio.save()
+
 class Rating(models.Model):
     rating = (
         (1, '1'),
