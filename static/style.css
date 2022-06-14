@@ -11,3 +11,9 @@ body{
     background-color: #49c5b6 !important;
 }
 
+.search-form{
+    border: none;
+    background-color: transparent;
+    resize: none;
+    outline: none;
+}

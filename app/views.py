@@ -48,9 +48,10 @@ def register_user(request):
             username = form.cleaned_data['username']
             email = form.cleaned_data['email']
 
-            photo = '/static/default.png'
-            bio = ""
-            
+            profile = Profile.objects.create(user=user)
+            profile.save()
+
+            return redirect('login') 
     context = {'page': page, 'form': form}
     return render(request, 'app/auth.html', context)
 
@@ -84,7 +85,7 @@ def add_post(request):
             image = form.cleaned_data['image']
             title = form.cleaned_data['title']
             description = form.cleaned_data['description']
-            url = form.cleaned_data['url']
+            url = form.cleaned_data['post_url']
             upload = Post(image=image, title=title, description=description, owner=owner)
             upload.save()
             return redirect('home')

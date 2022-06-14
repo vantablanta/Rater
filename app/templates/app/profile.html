@@ -12,9 +12,13 @@
                 <div class=""></div>
                 <div class="">
                     <div class="row">
+                        {%if profile.profile_photo%}
                         <div class="col-md-6">
                             <img src="{{profile.profile_photo.url}}" class="w-50 rounded-circle" alt="Image">
                         </div>
+                        {%else%}
+                        <p></p>
+                        {%endif%}
                         <div class="col-md-6 mt-5">
                             <div class="row">
                                 <strong class="col-md-4">{{profile.user.username}}</strong>
