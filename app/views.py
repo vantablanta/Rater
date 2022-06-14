@@ -11,7 +11,7 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from api.models import Profile, Post, Rating
 from .forms import RegisterForm
-from .forms import RatingsForm, SubmitForm
+from .forms import RatingsForm, SubmitForm, UpdateProfileForm
 
 # Create your views here.
 def login_user(request):
@@ -141,3 +141,13 @@ def project(request, post):
 
     }
     return render(request, 'app/project.html', context)
+
+def update_profile(request, pk):
+    profile = Profile.objects.get(id=pk)
+    form = UpdateProfileForm(request.POST, instance=profile)
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect('profile')
+    context = {'form': form}
+    return render(request, 'app/update.html', context)
