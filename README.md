@@ -5,7 +5,7 @@
 >An application that allows a user to post a project he/she has created and get it reviewed by his/her peers.
 
 ##  Live Link  
->[View Site](https://gram-mn.herokuapp.com)  to visit the site
+>[View Site](https://rater-mn.herokuapp.com)  to visit the site
   
 
 ## User Story  
