@@ -11,10 +11,6 @@ def api_overview(request):
     api_urls = {
         'Posts':'/post-list/',
         'Profile': '/profile',
-        'Detail_view':'/post-detail/<str:pk>/',
-        'Create':'/post-create/',
-        'Update':'/post-update/<str:pk>/',
-        'Delete':'/post-delete/<str:pk>/',
     }
     return Response(api_urls)
 

@@ -7,14 +7,34 @@
     {%include 'nav.html' %}
 </div>
 {%include 'app/auth.html' %}
-
-<div class="container-fluid ">
-    <div class="div">
-        {%for post in posts%}
-        <img src="{{post.image.url}}" alt="">
-        {%endfor%}
-    </div>
-    
+<div class="container-fluid text-light h-100 w-100 bg-dark">
+  <p class="pt-5">Site of the day {{post.created  |date:"d M Y" }}</p>
+    <div class="pt-5 mt-5 pb-5 mb-5">
+      <h4 class="text-center text-bold fs-1">{{post.title | title}}</h4>
+      <p class="text-center">By <span class="text-info">{{post.owner.username | capfirst }}</span></p>
+      <div class="btn btn-outline-info rounded-pill"><a class="text-decoration-none text-light" href="{{post.url}}">View</a></div>
+    </div> 
 </div>
+
+<div class="container-fluid row mb-4">
+  {%for post in posts%}
+  <a href="{{post.url}}" class="text-decoration-none text-dark col-md-3 me-3 w-25 pt-3">
+    <div class="card ">
+      <img src="{{post.image.url}}" class="w-10" alt="">
+      <div class="card-body">
+        <div class="row">
+          <p class="card-title col-md-5"><strong>{{post.title}}</strong></p>
+          <div class=" col-md-2"></div>
+          <p class="card-title col-md-5">{{post.created |date:"d M Y" }}</p>
+        </div>
+        <hr>
+        <img src="{{post.owner.profile_photo.url}}" class='rounded-circle border ml-3 mt-2' alt="" width="35" height="35">
+        <small class="pt-2">By {{post.owner.user.username}}</small>
+      </div>
+    </div>
+  </a>
+  {%endfor%}
+</div>
+
 
 {%endblock%}

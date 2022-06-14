@@ -1,3 +1,4 @@
+import datetime
 from multiprocessing import context
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404, render
@@ -57,10 +58,9 @@ def logout_user(request):
     return redirect('home')
 
 def home(request):
-    url = 'http://127.0.0.1:8000/api/post-list/'
-    response = requests.get(url)
-    posts = response.json()
-    context = {'posts':posts}
+    post = Post.objects.last()
+    posts = Post.objects.all()
+    context = {'post':post, 'posts':posts}
     return render(request, 'app/index.html', context)
 
 def profile(request):
