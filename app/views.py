@@ -62,6 +62,7 @@ def home(request):
     context = {'post':single_post, 'posts':posts}
     return render(request, 'app/index.html', context)
 
+@login_required(login_url='/login')
 def profile(request):
    user  = request.user
    profile = Profile.objects.get(user=user)
@@ -72,6 +73,7 @@ def profile(request):
 
    return render(request, 'app/profile.html', context)
 
+@login_required(login_url='/login')
 def add_post(request):
     form = SubmitForm()
     user = request.user
@@ -98,6 +100,7 @@ def search(request):
         context = {'posts': posts}
         return render(request, 'app/search.html', context)
 
+@login_required(login_url='/login')
 def project(request, post):
     post = Post.objects.filter(title=post).first()
     ratings = Rating.objects.filter(user=request.user, post=post).first()
@@ -142,6 +145,7 @@ def project(request, post):
     }
     return render(request, 'app/project.html', context)
 
+@login_required(login_url='/login')
 def update_profile(request, pk):
     profile = Profile.objects.get(id=pk)
     form = UpdateProfileForm(request.POST,request.FILES, instance=profile)
