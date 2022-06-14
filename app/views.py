@@ -82,7 +82,7 @@ def add_post(request):
             title = form.cleaned_data['title']
             description = form.cleaned_data['description']
             url = form.cleaned_data['post_url']
-            upload = Post(image=image, title=title, description=description, owner=owner)
+            upload = Post(image=image, title=title, description=description, owner=owner, post_url=url)
             upload.save()
             return redirect('home')
     context = {'form': form}
