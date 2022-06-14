@@ -4,9 +4,6 @@ from dotenv import load_dotenv
 import django_heroku
 import dj_database_url
 import cloudinary
-import cloudinary.uploader
-import cloudinary.api
-
 
 env_path = Path('.')/'.env'
 load_dotenv(dotenv_path=env_path)
