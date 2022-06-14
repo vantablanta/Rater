@@ -57,9 +57,9 @@ def logout_user(request):
     return redirect('home')
 
 def home(request):
-    post = Post.objects.last()
+    single_post = Post.objects.last()
     posts = Post.objects.all()
-    context = {'post':post, 'posts':posts}
+    context = {'post':single_post, 'posts':posts}
     return render(request, 'app/index.html', context)
 
 def profile(request):

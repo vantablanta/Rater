@@ -4,7 +4,9 @@
 <div class="container-fluid">
     {%include 'nav.html' %}
 </div>
+
 {%include 'app/auth.html' %}
+
 <div class="container-fluid text-light h-100 w-100 bg-dark pb-5">
   <p class="pt-5">Site of the day {{post.created  |date:"d M Y" }}</p>
     <div class="pt-5 mt-5 pb-5 mb-5">
@@ -38,14 +40,15 @@
       {%endif%}
       {%endfor%}
 
-</div>
 
 
+    </div>
     <div class="btn btn-outline-info rounded-pill">
       <a class="text-decoration-none text-light" href="{{post.post_url}}">View</a></div>
       <a class='float-end text-decoration-none text-light btn btn-outline-info rounded-pill' href="{%url 'project' post.title%}">Rate</a>
-    </div> 
 </div>
+
+
 
 <div class="container-fluid row mb-4">
   {%for post in posts%}
